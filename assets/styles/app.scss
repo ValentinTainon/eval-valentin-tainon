@@ -1,0 +1,32 @@
+@import "custom";
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: lightgray;
+}
+
+.list-computer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.brands {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px 0;
+}
+
+.brands > a {
+    padding: 10px 30px;
+    background: red;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.show{
+    display: flex;
+}

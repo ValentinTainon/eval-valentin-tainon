@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Computer List
+{% endblock %}
+
+{% block body %}
+
+	<div class="brands">
+		{% for brand in brands %}
+			<a href="{{ path('brand', {'id':brand.id}) }}">{{ brand.nom }}</a>
+		{% endfor %}
+	</div>
+
+	{% if app.user %}
+		<div class="text-center mt-3">
+			<a class="btn btn-success" href="{{ path('app_computer_new') }}">Ajouter une nouvelle annonce</a>
+		</div>
+	{% endif %}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<div class="text-center mt-3">
+			<a class="btn btn-warning" href="{{ path('app_computer_index') }}">Liste des PC</a>
+			<a class="btn btn-warning" href="{{ path('app_brand_index') }}">Liste des marques</a>
+		</div>
+	{% endif %}
+
+	<div class="list-computer">
+		{% for computer in computers %}
+			<div class="card" style="width: 25rem; height: 25rem;">
+				<img src="https://www.cybertek.fr/images_produits/dac99848-d4d6-4a92-b65c-89b5bc29c331.jpg" class="card-img-top" alt="Photo de l'ordinateur">
+				<div class="card-body">
+					<h5 class="card-title">{{ computer.modele|u.truncate(20, '...') }}</h5>
+					<p class="card-text">{{ computer.description|raw }}</p>
+					<a href="{{ path('app_computer_show', {'id':computer.id}) }}" class="btn btn-primary">Voir le PC</a>
+					
+					{# {% if app.user %}
+						{% if computer.isUserFav(app.user) %}
+							<a class="btn btn-success" href="{{ path('app_computer_fav', {'id':computer.id}) }}">
+								<i class="fa-solid fa-star"></i>
+							</a>
+						{% else %}
+							<a class="btn btn-warning" href="{{ path('app_computer_fav', {'id':computer.id}) }}">
+								<i class="fa-regular fa-star"></i>
+							</a>
+						{% endif %}
+					{% endif %} #}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}

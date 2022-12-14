@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ brand.nom }}{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<div class="brands">
+			{% for brand in brands %}
+				<a href="{{ path('brand', {'id':brand.id}) }}">{{ brand.nom }}</a>
+			{% endfor %}
+		</div>
+		
+		{% for computer in brand.computers %}
+			<div class="card" style="width: 30rem;">
+				<img src="https://www.cybertek.fr/images_produits/dac99848-d4d6-4a92-b65c-89b5bc29c331.jpg" class="card-img-top" alt="Photo de l'ordinateur">
+				<div class="card-body">
+					<h5 class="card-title">{{ computer.modele }}</h5>
+					<p class="card-text">{{ computer.description|raw }}</p>
+					<a href="{{ path('app_computer_show', {'id':computer.id}) }}" class="btn btn-primary">Voir le PC</a>
+				</div>
+			</div>
+		{% endfor %}
+
+	</div>
+{% endblock %}
